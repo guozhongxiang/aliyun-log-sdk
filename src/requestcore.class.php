@@ -800,7 +800,8 @@ class RequestCore
 
 			if ($curl_handle && $response)
 			{
-				return new $this->response_class($this->response_headers, $this->response_body, $this->response_code, $this->curl_handle);
+				//return new $this->response_class($this->response_headers, $this->response_body, $this->response_code, $this->curl_handle);
+				return new ResponseCore($this->response_headers, $this->response_body, $this->response_code, $this->curl_handle);
 			}
 		}
 
