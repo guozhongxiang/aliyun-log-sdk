@@ -1,14 +1,11 @@
 <?php
+namespace AliLog;
+
 /**
  * Copyright (C) Alibaba Cloud Computing
  * All rights reserved
  */
 date_default_timezone_set ( 'Asia/Shanghai' );
-
-require_once realpath ( dirname ( __FILE__ ) . '/Log_Autoload.php' );
-require_once realpath ( dirname ( __FILE__ ) . '/requestcore.class.php' );
-require_once realpath ( dirname ( __FILE__ ) . '/sls.proto.php' );
-require_once realpath ( dirname ( __FILE__ ) . '/protocolbuffers.inc.php' );
 
 if(!defined('API_VERSION'))
     define('API_VERSION', '0.6.0');

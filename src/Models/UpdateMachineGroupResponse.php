@@ -1,10 +1,10 @@
 <?php
+namespace AliLog\Models;
+
 /**
  * Copyright (C) Alibaba Cloud Computing
  * All rights reserved
  */
-
-require_once realpath(dirname(__FILE__) . '/Response.php');
 
 /**
  * The response of the GetLog API from log service.

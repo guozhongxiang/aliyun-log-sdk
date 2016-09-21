@@ -1,4 +1,6 @@
 <?php
+namespace AliLog;
+
 // Please include the below file before sls_logs.proto.php
 //require('protocolbuffers.inc.php');
 

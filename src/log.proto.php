@@ -1,4 +1,6 @@
 <?php
+namespace AliLog;
+
 // Please include the below file before log.proto.php
 //require('protocolbuffers.inc.php');
 

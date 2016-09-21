@@ -1,4 +1,6 @@
 <?php
+namespace AliLog;
+
 /**
  * Copyright (C) Alibaba Cloud Computing
  * All rights reserved

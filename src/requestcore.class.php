@@ -1,4 +1,6 @@
 <?php
+namespace AliLog;
+
 /**
  * Handles all HTTP requests using cURL and manages the responses.
  *
