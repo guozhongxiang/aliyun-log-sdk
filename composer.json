@@ -1,0 +1,17 @@
+{
+  "name": "guozhongxiang/aliyun-oss-php-sdk",
+  "description": "Aliyun Log SDK for PHP",
+  "type": "library",
+  "authors": [
+    {
+      "name": "guozhongxiang",
+      "email": "njugzx@163.com"
+    }
+  ],
+  "require": {
+    "php":">=5.2.1"
+  },
+  "autoload": {
+    "psr-4": {"AliLog\\": "src/"}
+  }
+}
