@@ -11,7 +11,7 @@ namespace AliLog;
  *
  * @author log service dev
  */
-class Aliyun_Log_Exception extends Exception{
+class Aliyun_Log_Exception extends \Exception{
     /**
      * @var string
      */

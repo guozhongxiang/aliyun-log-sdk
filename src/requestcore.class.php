@@ -1028,4 +1028,4 @@ class ResponseCore
 /**
  * Default RequestCore Exception.
  */
-class RequestCore_Exception extends Exception {}
+class RequestCore_Exception extends \Exception {}

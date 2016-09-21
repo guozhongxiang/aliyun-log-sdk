@@ -152,7 +152,7 @@ class Aliyun_Log_Client {
         try {
             list ( $responseCode, $header, $resBody ) = 
                     $this->getHttpResponse ( $method, $url, $body, $headers );
-        } catch ( Exception $ex ) {
+        } catch ( \Exception $ex ) {
             throw new Aliyun_Log_Exception ( $ex->getMessage (), $ex->__toString () );
         }
         
