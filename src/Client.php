@@ -225,7 +225,7 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      * @return Aliyun_Log_Models_PutLogsResponse
      */
-    public function putLogs(Aliyun_Log_Models_PutLogsRequest $request) {
+    public function putLogs(\AliLog\Models\Aliyun_Log_Models_PutLogsRequest $request) {
         if (count ( $request->getLogitems () ) > 4096)
             throw new Aliyun_Log_Exception ( 'InvalidLogSize', "logItems' length exceeds maximum limitation: 4096 lines." );
         
@@ -274,7 +274,7 @@ class Aliyun_Log_Client {
         list ( $resp, $header ) = $this->send ( "POST", $project, $body, $resource, $params, $headers );
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_PutLogsResponse ( $header );
+        return new \AliLog\Models\Aliyun_Log_Models_PutLogsResponse ( $header );
     }
 
     /**
@@ -285,7 +285,7 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      * return Aliyun_Log_Models_CreateLogstoreResponse
      */
-    public function createLogstore(Aliyun_Log_Models_CreateLogstoreRequest $request){
+    public function createLogstore(\AliLog\Models\Aliyun_Log_Models_CreateLogstoreRequest $request){
         $headers = array ();
         $params = array ();
         $resource = '/logstores';
@@ -301,7 +301,7 @@ class Aliyun_Log_Client {
         list($resp,$header)  = $this -> send("POST",$project,$body_str,$resource,$params,$headers);
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_CreateLogstoreResponse($resp,$header);
+        return new \AliLog\Models\Aliyun_Log_Models_CreateLogstoreResponse($resp,$header);
     }
     /**
      * update logstore 
@@ -311,7 +311,7 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      * return Aliyun_Log_Models_UpdateLogstoreResponse
      */
-    public function updateLogstore(Aliyun_Log_Models_UpdateLogstoreRequest $request){
+    public function updateLogstore(\AliLog\Models\Aliyun_Log_Models_UpdateLogstoreRequest $request){
         $headers = array ();
         $params = array ();
         $project = $request->getProject () !== null ? $request->getProject () : '';
@@ -327,7 +327,7 @@ class Aliyun_Log_Client {
         list($resp,$header)  = $this -> send("PUT",$project,$body_str,$resource,$params,$headers);
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_UpdateLogstoreResponse($resp,$header);
+        return new \AliLog\Models\Aliyun_Log_Models_UpdateLogstoreResponse($resp,$header);
     }
     /**
      * List all logstores of requested project.
@@ -337,7 +337,7 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      * @return Aliyun_Log_Models_ListLogstoresResponse
      */
-    public function listLogstores(Aliyun_Log_Models_ListLogstoresRequest $request) {
+    public function listLogstores(\AliLog\Models\Aliyun_Log_Models_ListLogstoresRequest $request) {
         $headers = array ();
         $params = array ();
         $resource = '/logstores';
@@ -345,7 +345,7 @@ class Aliyun_Log_Client {
         list ( $resp, $header ) = $this->send ( "GET", $project, NULL, $resource, $params, $headers );
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_ListLogstoresResponse ( $resp, $header );
+        return new \AliLog\Models\Aliyun_Log_Models_ListLogstoresResponse ( $resp, $header );
     }
 
     /**
@@ -356,7 +356,7 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      * @return Aliyun_Log_Models_DeleteLogstoresResponse
      */
-    public function deleteLogstore(Aliyun_Log_Models_DeleteLogstoreRequest $request) {
+    public function deleteLogstore(\AliLog\Models\Aliyun_Log_Models_DeleteLogstoreRequest $request) {
         $headers = array ();
         $params = array ();
         $project = $request->getProject () !== null ? $request->getProject () : '';
@@ -365,7 +365,7 @@ class Aliyun_Log_Client {
         list ( $resp, $header ) = $this->send ( "DELETE", $project, NULL, $resource, $params, $headers );
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_DeleteLogstoreResponse ( $resp, $header );
+        return new \AliLog\Models\Aliyun_Log_Models_DeleteLogstoreResponse ( $resp, $header );
     }
 
     /**
@@ -376,7 +376,7 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      * @return Aliyun_Log_Models_ListTopicsResponse
      */
-    public function listTopics(Aliyun_Log_Models_ListTopicsRequest $request) {
+    public function listTopics(\AliLog\Models\Aliyun_Log_Models_ListTopicsRequest $request) {
         $headers = array ();
         $params = array ();
         if ($request->getToken () !== null)
@@ -390,7 +390,7 @@ class Aliyun_Log_Client {
         list ( $resp, $header ) = $this->send ( "GET", $project, NULL, $resource, $params, $headers );
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_ListTopicsResponse ( $resp, $header );
+        return new \AliLog\Models\Aliyun_Log_Models_ListTopicsResponse ( $resp, $header );
     }
     
     /**
@@ -401,7 +401,7 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      * @return Aliyun_Log_Models_GetHistogramsResponse
      */
-    public function getHistograms(Aliyun_Log_Models_GetHistogramsRequest $request) {
+    public function getHistograms(\AliLog\Models\Aliyun_Log_Models_GetHistogramsRequest $request) {
         $headers = array ();
         $params = array ();
         if ($request->getTopic () !== null)
@@ -419,7 +419,7 @@ class Aliyun_Log_Client {
         list ( $resp, $header ) = $this->send ( "GET", $project, NULL, $resource, $params, $headers );
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_GetHistogramsResponse ( $resp, $header );
+        return new \AliLog\Models\Aliyun_Log_Models_GetHistogramsResponse ( $resp, $header );
     }
     
     /**
@@ -430,7 +430,7 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      * @return Aliyun_Log_Models_GetLogsResponse
      */
-    public function getLogs(Aliyun_Log_Models_GetLogsRequest $request) {
+    public function getLogs(\AliLog\Models\Aliyun_Log_Models_GetLogsRequest $request) {
         $headers = array ();
         $params = array ();
         if ($request->getTopic () !== null)
@@ -454,7 +454,7 @@ class Aliyun_Log_Client {
         list ( $resp, $header ) = $this->send ( "GET", $project, NULL, $resource, $params, $headers );
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_GetLogsResponse ( $resp, $header );
+        return new \AliLog\Models\Aliyun_Log_Models_GetLogsResponse ( $resp, $header );
     }
     
     
@@ -466,7 +466,7 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      * @return Aliyun_Log_Models_BatchGetLogsResponse
      */
-    public function batchGetLogs(Aliyun_Log_Models_BatchGetLogsRequest $request) {
+    public function batchGetLogs(\AliLog\Models\Aliyun_Log_Models_BatchGetLogsRequest $request) {
       $params = array();
       $headers = array();
       $project = $request->getProject()!==null?$request->getProject():'';
@@ -489,7 +489,7 @@ class Aliyun_Log_Client {
       else {
           $resp = new LogGroupList($resp);
       }
-      return new Aliyun_Log_Models_BatchGetLogsResponse ( $resp, $header );
+      return new \AliLog\Models\Aliyun_Log_Models_BatchGetLogsResponse ( $resp, $header );
     }
 
     /**
@@ -500,7 +500,7 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      * @return Aliyun_Log_Models_ListShardsResponse
      */
-    public function listShards(Aliyun_Log_Models_ListShardsRequest $request) {
+    public function listShards(\AliLog\Models\Aliyun_Log_Models_ListShardsRequest $request) {
         $params = array();
         $headers = array();
         $project = $request->getProject()!==null?$request->getProject():'';
@@ -510,7 +510,7 @@ class Aliyun_Log_Client {
         list($resp,$header) = $this->send("GET",$project,NULL,$resource,$params,$headers); 
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_ListShardsResponse ( $resp, $header );
+        return new \AliLog\Models\Aliyun_Log_Models_ListShardsResponse ( $resp, $header );
     }
 
     /**
@@ -521,7 +521,7 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      * @return Aliyun_Log_Models_ListShardsResponse
      */
-    public function splitShard(Aliyun_Log_Models_SplitShardRequest $request) {
+    public function splitShard(\AliLog\Models\Aliyun_Log_Models_SplitShardRequest $request) {
         $params = array();
         $headers = array();
         $project = $request->getProject()!==null?$request->getProject():'';
@@ -535,7 +535,7 @@ class Aliyun_Log_Client {
         list($resp,$header) = $this->send("POST",$project,NULL,$resource,$params,$headers); 
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_ListShardsResponse ( $resp, $header );
+        return new \AliLog\Models\Aliyun_Log_Models_ListShardsResponse ( $resp, $header );
     }
     /**
      * merge two shards into one shard with Project and logstore and shardId and conditions.
@@ -545,7 +545,7 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      * @return Aliyun_Log_Models_ListShardsResponse
      */
-    public function MergeShards(Aliyun_Log_Models_MergeShardsRequest $request) {
+    public function MergeShards(\AliLog\Models\Aliyun_Log_Models_MergeShardsRequest $request) {
         $params = array();
         $headers = array();
         $project = $request->getProject()!==null?$request->getProject():'';
@@ -557,7 +557,7 @@ class Aliyun_Log_Client {
         list($resp,$header) = $this->send("POST",$project,NULL,$resource,$params,$headers); 
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_ListShardsResponse ( $resp, $header );
+        return new \AliLog\Models\Aliyun_Log_Models_ListShardsResponse ( $resp, $header );
     }
     /**
      * delete a read only shard with Project and logstore and shardId conditions.
@@ -567,7 +567,7 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      * @return Aliyun_Log_Models_ListShardsResponse
      */
-    public function DeleteShard(Aliyun_Log_Models_DeleteShardRequest $request) {
+    public function DeleteShard(\AliLog\Models\Aliyun_Log_Models_DeleteShardRequest $request) {
         $params = array();
         $headers = array();
         $project = $request->getProject()!==null?$request->getProject():'';
@@ -577,7 +577,7 @@ class Aliyun_Log_Client {
         $resource='/logstores/'.$logstore.'/shards/'.$shardId;
         list($resp,$header) = $this->send("DELETE",$project,NULL,$resource,$params,$headers); 
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
-        return new Aliyun_Log_Models_DeleteShardResponse ( $header );
+        return new \AliLog\Models\Aliyun_Log_Models_DeleteShardResponse ( $header );
     }
 
     /**
@@ -588,7 +588,7 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      * @return Aliyun_Log_Models_GetCursorResponse
      */
-    public function getCursor(Aliyun_Log_Models_GetCursorRequest $request){
+    public function getCursor(\AliLog\Models\Aliyun_Log_Models_GetCursorRequest $request){
       $params = array();
       $headers = array();
       $project = $request->getProject()!==null?$request->getProject():'';
@@ -614,10 +614,10 @@ class Aliyun_Log_Client {
       list($resp,$header) = $this->send("GET",$project,NULL,$resource,$params,$headers); 
       $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
       $resp = $this->parseToJson ( $resp, $requestId );
-      return new Aliyun_Log_Models_GetCursorResponse($resp,$header);
+      return new \AliLog\Models\Aliyun_Log_Models_GetCursorResponse($resp,$header);
     }
 
-    public function createConfig(Aliyun_Log_Models_CreateConfigRequest $request){
+    public function createConfig(\AliLog\Models\Aliyun_Log_Models_CreateConfigRequest $request){
         $params = array();
         $headers = array();
         $body=null;
@@ -627,10 +627,10 @@ class Aliyun_Log_Client {
         $headers ['Content-Type'] = 'application/json';
         $resource = '/configs';
         list($resp,$header) = $this->send("POST",NULL,$body,$resource,$params,$headers); 
-        return new Aliyun_Log_Models_CreateConfigResponse($header);
+        return new \AliLog\Models\Aliyun_Log_Models_CreateConfigResponse($header);
     }
 
-    public function updateConfig(Aliyun_Log_Models_UpdateConfigRequest $request){
+    public function updateConfig(\AliLog\Models\Aliyun_Log_Models_UpdateConfigRequest $request){
         $params = array();
         $headers = array();
         $body=null;
@@ -642,10 +642,10 @@ class Aliyun_Log_Client {
         $headers ['Content-Type'] = 'application/json';
         $resource = '/configs/'.$configName;
         list($resp,$header) = $this->send("PUT",NULL,$body,$resource,$params,$headers);  
-        return new Aliyun_Log_Models_UpdateConfigResponse($header);
+        return new \AliLog\Models\Aliyun_Log_Models_UpdateConfigResponse($header);
     }
 
-    public function getConfig(Aliyun_Log_Models_GetConfigRequest $request){
+    public function getConfig(\AliLog\Models\Aliyun_Log_Models_GetConfigRequest $request){
         $params = array();
         $headers = array();
 
@@ -655,19 +655,19 @@ class Aliyun_Log_Client {
         list($resp,$header) = $this->send("GET",NULL,NULL,$resource,$params,$headers); 
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_GetConfigResponse($resp,$header);
+        return new \AliLog\Models\Aliyun_Log_Models_GetConfigResponse($resp,$header);
     }
 
-    public function deleteConfig(Aliyun_Log_Models_DeleteConfigRequest $request){
+    public function deleteConfig(\AliLog\Models\Aliyun_Log_Models_DeleteConfigRequest $request){
         $params = array();
         $headers = array();
         $configName = ($request->getConfigName()!==null)?$request->getConfigName():'';
         $resource = '/configs/'.$configName;
         list($resp,$header) = $this->send("DELETE",NULL,NULL,$resource,$params,$headers); 
-        return new Aliyun_Log_Models_DeleteConfigResponse($header);
+        return new \AliLog\Models\Aliyun_Log_Models_DeleteConfigResponse($header);
     }
 
-    public function listConfigs(Aliyun_Log_Models_ListConfigsRequest $request){
+    public function listConfigs(\AliLog\Models\Aliyun_Log_Models_ListConfigsRequest $request){
         $params = array();
         $headers = array();
 
@@ -679,10 +679,10 @@ class Aliyun_Log_Client {
         list($resp,$header) = $this->send("GET",NULL,NULL,$resource,$params,$headers); 
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_ListConfigsResponse($resp,$header);
+        return new \AliLog\Models\Aliyun_Log_Models_ListConfigsResponse($resp,$header);
     }
     
-    public function createMachineGroup(Aliyun_Log_Models_CreateMachineGroupRequest $request){
+    public function createMachineGroup(\AliLog\Models\Aliyun_Log_Models_CreateMachineGroupRequest $request){
         $params = array();
         $headers = array();
         $body=null;
@@ -693,10 +693,10 @@ class Aliyun_Log_Client {
         $resource = '/machinegroups';
         list($resp,$header) = $this->send("POST",NULL,$body,$resource,$params,$headers); 
 
-        return new Aliyun_Log_Models_CreateMachineGroupResponse($header);
+        return new \AliLog\Models\Aliyun_Log_Models_CreateMachineGroupResponse($header);
     }
 
-    public function updateMachineGroup(Aliyun_Log_Models_UpdateMachineGroupRequest $request){
+    public function updateMachineGroup(\AliLog\Models\Aliyun_Log_Models_UpdateMachineGroupRequest $request){
         $params = array();
         $headers = array();
         $body=null;
@@ -708,10 +708,10 @@ class Aliyun_Log_Client {
         $headers ['Content-Type'] = 'application/json';
         $resource = '/machinegroups/'.$groupName;
         list($resp,$header) = $this->send("PUT",NULL,$body,$resource,$params,$headers);  
-        return new Aliyun_Log_Models_UpdateMachineGroupResponse($header);
+        return new \AliLog\Models\Aliyun_Log_Models_UpdateMachineGroupResponse($header);
     }
 
-    public function getMachineGroup(Aliyun_Log_Models_GetMachineGroupRequest $request){
+    public function getMachineGroup(\AliLog\Models\Aliyun_Log_Models_GetMachineGroupRequest $request){
         $params = array();
         $headers = array();
 
@@ -721,20 +721,20 @@ class Aliyun_Log_Client {
         list($resp,$header) = $this->send("GET",NULL,NULL,$resource,$params,$headers); 
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_GetMachineGroupResponse($resp,$header);
+        return new \AliLog\Models\Aliyun_Log_Models_GetMachineGroupResponse($resp,$header);
     }
 
-    public function deleteMachineGroup(Aliyun_Log_Models_DeleteMachineGroupRequest $request){
+    public function deleteMachineGroup(\AliLog\Models\Aliyun_Log_Models_DeleteMachineGroupRequest $request){
         $params = array();
         $headers = array();
 
         $groupName = ($request->getGroupName()!==null)?$request->getGroupName():'';
         $resource = '/machinegroups/'.$groupName;
         list($resp,$header) = $this->send("DELETE",NULL,NULL,$resource,$params,$headers); 
-        return new Aliyun_Log_Models_DeleteMachineGroupResponse($header);
+        return new \AliLog\Models\Aliyun_Log_Models_DeleteMachineGroupResponse($header);
     }
 
-    public function listMachineGroups(Aliyun_Log_Models_ListMachineGroupsRequest $request){
+    public function listMachineGroups(\AliLog\Models\Aliyun_Log_Models_ListMachineGroupsRequest $request){
         $params = array();
         $headers = array();
 
@@ -747,10 +747,10 @@ class Aliyun_Log_Client {
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
 
-        return new Aliyun_Log_Models_ListMachineGroupsResponse($resp,$header);
+        return new \AliLog\Models\Aliyun_Log_Models_ListMachineGroupsResponse($resp,$header);
     }
 
-    public function applyConfigToMachineGroup(Aliyun_Log_Models_ApplyConfigToMachineGroupRequest $request){
+    public function applyConfigToMachineGroup(\AliLog\Models\Aliyun_Log_Models_ApplyConfigToMachineGroupRequest $request){
         $params = array();
         $headers = array();
         $configName=$request->getConfigName();
@@ -758,10 +758,10 @@ class Aliyun_Log_Client {
         $headers ['Content-Type'] = 'application/json';
         $resource = '/machinegroups/'.$groupName.'/configs/'.$configName;
         list($resp,$header) = $this->send("PUT",NULL,NULL,$resource,$params,$headers);  
-        return new Aliyun_Log_Models_ApplyConfigToMachineGroupResponse($header);
+        return new \AliLog\Models\Aliyun_Log_Models_ApplyConfigToMachineGroupResponse($header);
     }
 
-    public function removeConfigFromMachineGroup(Aliyun_Log_Models_RemoveConfigFromMachineGroupRequest $request){
+    public function removeConfigFromMachineGroup(\AliLog\Models\Aliyun_Log_Models_RemoveConfigFromMachineGroupRequest $request){
         $params = array();
         $headers = array();
         $configName=$request->getConfigName();
@@ -769,10 +769,10 @@ class Aliyun_Log_Client {
         $headers ['Content-Type'] = 'application/json';
         $resource = '/machinegroups/'.$groupName.'/configs/'.$configName;
         list($resp,$header) = $this->send("DELETE",NULL,NULL,$resource,$params,$headers);  
-        return new Aliyun_Log_Models_RemoveConfigFromMachineGroupResponse($header);
+        return new \AliLog\Models\Aliyun_Log_Models_RemoveConfigFromMachineGroupResponse($header);
     }
 
-    public function getMachine(Aliyun_Log_Models_GetMachineRequest $request){
+    public function getMachine(\AliLog\Models\Aliyun_Log_Models_GetMachineRequest $request){
         $params = array();
         $headers = array();
 
@@ -782,10 +782,10 @@ class Aliyun_Log_Client {
         list($resp,$header) = $this->send("GET",NULL,NULL,$resource,$params,$headers);
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_GetMachineResponse($resp,$header);
+        return new \AliLog\Models\Aliyun_Log_Models_GetMachineResponse($resp,$header);
     }
 
-    public function createACL(Aliyun_Log_Models_CreateACLRequest $request){
+    public function createACL(\AliLog\Models\Aliyun_Log_Models_CreateACLRequest $request){
         $params = array();
         $headers = array();
         $body=null;
@@ -797,10 +797,10 @@ class Aliyun_Log_Client {
         list($resp,$header) = $this->send("POST",NULL,$body,$resource,$params,$headers);
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_CreateACLResponse($resp,$header);
+        return new \AliLog\Models\Aliyun_Log_Models_CreateACLResponse($resp,$header);
     }
 
-    public function updateACL(Aliyun_Log_Models_UpdateACLRequest $request){
+    public function updateACL(\AliLog\Models\Aliyun_Log_Models_UpdateACLRequest $request){
         $params = array();
         $headers = array();
         $body=null;
@@ -812,10 +812,10 @@ class Aliyun_Log_Client {
         $headers ['Content-Type'] = 'application/json';
         $resource = '/acls/'.$aclId;
         list($resp,$header) = $this->send("PUT",NULL,$body,$resource,$params,$headers);  
-        return new Aliyun_Log_Models_UpdateACLResponse($header);
+        return new \AliLog\Models\Aliyun_Log_Models_UpdateACLResponse($header);
     }
     
-    public function getACL(Aliyun_Log_Models_GetACLRequest $request){
+    public function getACL(\AliLog\Models\Aliyun_Log_Models_GetACLRequest $request){
         $params = array();
         $headers = array();
 
@@ -826,19 +826,19 @@ class Aliyun_Log_Client {
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
 
-        return new Aliyun_Log_Models_GetACLResponse($resp,$header);
+        return new \AliLog\Models\Aliyun_Log_Models_GetACLResponse($resp,$header);
     }
     
-    public function deleteACL(Aliyun_Log_Models_DeleteACLRequest $request){
+    public function deleteACL(\AliLog\Models\Aliyun_Log_Models_DeleteACLRequest $request){
         $params = array();
         $headers = array();
         $aclId = ($request->getAclId()!==null)?$request->getAclId():'';
         $resource = '/acls/'.$aclId;
         list($resp,$header) = $this->send("DELETE",NULL,NULL,$resource,$params,$headers); 
-        return new Aliyun_Log_Models_DeleteACLResponse($header);
+        return new \AliLog\Models\Aliyun_Log_Models_DeleteACLResponse($header);
     }
     
-    public function listACLs(Aliyun_Log_Models_ListACLsRequest $request){
+    public function listACLs(\AliLog\Models\Aliyun_Log_Models_ListACLsRequest $request){
         $params = array();
         $headers = array();
         if($request->getPrincipleId()!==null)$params['principleId'] = $request->getPrincipleId();
@@ -849,7 +849,7 @@ class Aliyun_Log_Client {
         list($resp,$header) = $this->send("GET",NULL,NULL,$resource,$params,$headers); 
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_ListACLsResponse($resp,$header);
+        return new \AliLog\Models\Aliyun_Log_Models_ListACLsResponse($resp,$header);
     }
 
 }
